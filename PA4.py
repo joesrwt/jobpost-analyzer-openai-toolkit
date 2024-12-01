@@ -157,7 +157,7 @@ st.markdown(
     """
     <hr>
     <div style="text-align: center; color: #696969;">
-        <p>Made with ❤️ using <b>Streamlit</b> and <b>OpenAI</b>.</p>
+        <p>Sorawit Huang 6542118426</p>
     </div>
     """,
     unsafe_allow_html=True,
