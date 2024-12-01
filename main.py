@@ -31,27 +31,30 @@ st.markdown(
 )
 
 # Example Job Description, Responsibilities, and Requirements
-job_example = """About the job
-The ideal candidate's favorite words are learning, data, scale, and agility. You will leverage your strong collaboration skills and ability to extract valuable insights from highly complex data sets to ask the right questions and find the right answers.
+job_example = """**About The Job**
 
-**Responsibilities**
-Translate business issues into specific requirements to develop the analytics solutions
-Develop Statistical / Machine Learning models e.g. Segmentation, Propensity, Recommendation, Optimization models to meet the business objectives for unsecured loan products
-Explore and utilize variety of internal and external data (structured/unstructured/real time) to improve model performance
-Coordinate with related teams to deploy models in Production with Model implementation process complied
-Monitor model performance and propose the recommendations to calibrate or re-develop models to improve their performance
-Provide & communicate analytics and model usages to business as well as the in-depth analysis to answer strategic queries
-Collaborate and manage vendors to deliver the projects related to customer analytics and models
+Work closely with R&D engineering teams to build data analytics workflows and processes, develop statistics / physics / ML models that bring insights into valueadded analytics. Develop GenAI models that transform complex data sets into clear, actionable insights.#internship
 
-**Qualifications**
+**About You**
 
-Bachelor’s or master’s degree in a quantitative field (e.g. Business Analytics, Computer Science, Statistics, other related fields)
-2-5 years of experience working as a data scientist building models using machine learning
-Experience with relevant programming languages: Python, PySpark, SQL
-Ability to identify problems, formulate and articulate solutions, and defend assumptions
-Logical thinking and a high degree of attention to detail
-Ability to work with all levels of staff across all lines of business in the company
-Creative, innovative, collaborative, and customer focused attitude
+  Master degree or PhD degree graduate student in Computer Science Engineering, Electrical Engineering, Mechanical Engineering, Physics fields.
+ Passionate about data and analytics with AI/ML capabilities.
+ Ability to work independently with proven problem-solving skills and out-of-box thinking mindset.
+ Good communication and teamwork skills needed in collaborative cross functional team environment.
+ Design, develop and deliver data science solutions
+
+**Your Experience Includes**
+
+  Develop python rule-based and ML/DL model on time series data, image data, and parametric data.
+ PyTorch or Tensorflow framework.
+ Statistics models & ML algorithms such as multi-class classifications, decision trees and deep learning. Image AI, computer vision, OpenCV and TensorFlow.
+
+**You Might Also Have**
+
+  Data engineering skills including API, Airflow, Spark, Docker and Kubernetes.
+ Proficiency with Linux OS and terminal command line is a plus.
+ Version control such as Git or SVN.
+ Web based dashboard and visualization
 """
 
 # Input 1: Job Information (description, responsibilities, requirements)
