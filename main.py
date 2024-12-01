@@ -145,10 +145,12 @@ if st.button("🚀 Analyze & Generate Insights"):
 
         # Create a DataFrame for Technical Skills
         technical_skills_df = pd.DataFrame({"Technical Skills": technical_skills})
-
-        # Create a DataFrame for Soft Skills
+        technical_skills_df.index += 1  # Set index starting from 1
+        
+        # Create a DataFrame for Soft Skills with index starting from 1
         soft_skills_df = pd.DataFrame({"Soft Skills": soft_skills})
-
+        soft_skills_df.index += 1  # Set index starting from 1
+        
         # Display the tables for Technical Skills and Soft Skills
         st.subheader("🔧 Technical Skills")
         st.table(technical_skills_df)
