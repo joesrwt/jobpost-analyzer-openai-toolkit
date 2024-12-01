@@ -38,23 +38,23 @@ Work closely with R&D engineering teams to build data analytics workflows and pr
 **About You**
 
 Master degree or PhD degree graduate student in Computer Science Engineering, Electrical Engineering, Mechanical Engineering, Physics fields.
- Passionate about data and analytics with AI/ML capabilities.
- Ability to work independently with proven problem-solving skills and out-of-box thinking mindset.
- Good communication and teamwork skills needed in collaborative cross functional team environment.
- Design, develop and deliver data science solutions
+Passionate about data and analytics with AI/ML capabilities.
+Ability to work independently with proven problem-solving skills and out-of-box thinking mindset.
+Good communication and teamwork skills needed in collaborative cross functional team environment.
+Design, develop and deliver data science solutions
 
 **Your Experience Includes**
 
 Develop python rule-based and ML/DL model on time series data, image data, and parametric data.
- PyTorch or Tensorflow framework.
- Statistics models & ML algorithms such as multi-class classifications, decision trees and deep learning. Image AI, computer vision, OpenCV and TensorFlow.
+PyTorch or Tensorflow framework.
+Statistics models & ML algorithms such as multi-class classifications, decision trees and deep learning. Image AI, computer vision, OpenCV and TensorFlow.
 
 **You Might Also Have**
 
-  Data engineering skills including API, Airflow, Spark, Docker and Kubernetes.
- Proficiency with Linux OS and terminal command line is a plus.
- Version control such as Git or SVN.
- Web based dashboard and visualization
+Data engineering skills including API, Airflow, Spark, Docker and Kubernetes.
+Proficiency with Linux OS and terminal command line is a plus.
+Version control such as Git or SVN.
+Web based dashboard and visualization
 """
 
 # Input 1: Job Information (description, responsibilities, requirements)
