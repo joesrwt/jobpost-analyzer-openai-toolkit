@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import json
-from openai import OpenAI
+import openai
 # Set page configuration
 st.set_page_config(
     page_title="LinkedIn Job Post Analyzer & Mock Interview Toolkit",
