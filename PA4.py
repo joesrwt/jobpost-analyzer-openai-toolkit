@@ -33,23 +33,29 @@ st.markdown(
 # Example Job Description, Responsibilities, and Requirements
 job_example = """
 **About the Job:**  
-As a Data Scientist, you will be responsible for leveraging your expertise in data analysis, statistical modeling, and machine learning to solve complex business problems and drive data-driven decision-making. You will collaborate with cross-functional teams to analyze large datasets, extract actionable insights, and develop predictive models that contribute to the company’s strategic goals. This role requires proficiency in programming, data wrangling, and visualization, along with the ability to communicate findings to both technical and non-technical stakeholders.
+Do you have a passion in Data Analyst?
+Our Data Analyst Internship Programme has been crafted to simulate our Graduate Programme so that you can understand what a career in technology at London Stock Exchange Group (LSEG) would really be like.
+At LSEG, we consider on providing opportunities equally as a priority, we strive to establish teams that are diverse and encourage coordinated working and sharing of ideas!
+At LSEG Bangkok, you can be your best self. Our open and inclusive culture and collaborative communities connect colleagues from across the world, and a host of skill development programmes support our people's personal and professional growth.
 
-**Key Responsibilities:**  
-- Collect, clean, and preprocess large datasets from various sources  
-- Develop and implement machine learning models to solve business challenges  
-- Perform statistical analysis and data visualization to identify trends and insights  
-- Collaborate with business stakeholders to understand their needs and provide actionable recommendations  
-- Continuously evaluate and improve the performance of models and algorithms  
-- Communicate findings and insights to both technical and non-technical teams through clear reports and presentations
+We are looking for undergraduates student who will support our Data Analyst team in collecting, cleaning, and transforming data from different sources
 
-**Key Qualifications:**  
-- Strong proficiency in Python, R, or other data analysis languages  
-- Experience with machine learning libraries and frameworks such as TensorFlow, PyTorch, or Scikit-learn  
-- Solid understanding of statistics, data analysis, and data visualization  
-- Familiarity with big data technologies (e.g., Hadoop, Spark) is a plus  
-- Strong problem-solving skills and ability to think critically about data  
-- Excellent communication and collaboration skills to work with cross-functional teams
+Perform data analysis using your weapon of choice - either Tableau or Power BI
+Perform data manipulation, analysis, and forecasting via MS Excel
+Learn how to analyse and capture insights using real world data
+Learn what service intelligence is and it's impact
+Work with partners across the globe
+Get to be part of world's leading fintech company
+
+**What we are looking for:**
+
+You will have an interest in technology demonstrated either via your academic studies, work experience, or extracurricular activities. For instance, you may be part of a Computing Society, have taught yourself how to code or have focused on technology as part of a university project.
+
+Basic SQL, will be a good starting point to have for this internship
+Although not a requirement if you understood Python, Power BI, and Tableau skills this would be a plus
+A curiosity for data and an ability to analyse information to draw conclusions and propose solutions.
+Individuals who are able to connect the dots and think creatively.
+People who can collaborate with others, using their strong English communication skills in the process. (written and verbal)
 """
 
 # Input 1: Job Information (description, responsibilities, requirements)
