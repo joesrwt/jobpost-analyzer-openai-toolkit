@@ -69,13 +69,13 @@ job_post_description = st.text_area(
 job_post_prompt = """
 You are an AI assistant that extracts technical skills, soft skills, and a summary of the key characteristics the company is looking for from LinkedIn job posts.
 Given a LinkedIn job description, extract a summary in the following fields:
-- "Technical Skills": Key technical skills required for the role.
+- "Technical Skills": Key technical skills required for the role, it can also be tools or programming languages
 - "Soft Skills": Key soft skills required for the role.
 - "Candidate Profile": A summary of the key traits or qualities the company is seeking in a candidate, such as personality traits or professional qualities, make it short and clear within 3 sentences.
 
 Example output:
 {
-    "Technical Skills": ["Python", "Machine Learning", "Data Analysis", "SQL"],
+    "Technical Skills": ["Python", "Machine Learning", "Data Analysis", "SQL", "Hadoop", "NLP"],
     "Soft Skills": ["Collaboration", "Adaptability", "Communication"],
     "Candidate Profile": "The ideal candidate is a strategic thinker, innovative, data-driven, collaborative, and results-oriented, with excellent communication skills."
 }
