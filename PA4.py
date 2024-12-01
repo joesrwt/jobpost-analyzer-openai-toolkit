@@ -112,13 +112,17 @@ if st.button("🚀 Analyze & Generate Insights"):
             soft_skills = insights.get("Soft Skills", [])
             candidate_profile = insights.get("Candidate Profile", "")
 
-            # Display insights in DataFrame
+            # Display insights in columns
             st.markdown("### 📊 Job Insights")
-            df_insights = pd.DataFrame({
-                "Technical Skills": [", ".join(technical_skills)],
-                "Soft Skills": [", ".join(soft_skills)],
-            })
-            st.table(df_insights)
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.subheader("🔧 Technical Skills")
+                st.write(", ".join(technical_skills))
+
+            with col2:
+                st.subheader("🤝 Soft Skills")
+                st.write(", ".join(soft_skills))
 
             # Display Candidate Profile as text
             st.markdown("### 🏆 Ideal Candidate Profile")
@@ -162,3 +166,4 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
