@@ -52,7 +52,6 @@ Ability to identify problems, formulate and articulate solutions, and defend ass
 Logical thinking and a high degree of attention to detail
 Ability to work with all levels of staff across all lines of business in the company
 Creative, innovative, collaborative, and customer focused attitude
-y, engineering or computing related degree. 
 """
 
 # Input 1: Job Information (description, responsibilities, requirements)
@@ -118,7 +117,6 @@ st.markdown(
     """, unsafe_allow_html=True)
 
 # Submit button for generating insights and mock interview questions
-# Submit button for generating insights and mock interview questions
 if st.button("🚀 Analyze & Generate Insights"):
     if not user_api_key:
         st.error("⚠️ Please enter your OpenAI API key in the sidebar to proceed.")
@@ -142,18 +140,21 @@ if st.button("🚀 Analyze & Generate Insights"):
         soft_skills = insights.get("Soft Skills", [])
         candidate_profile = insights.get("Candidate Profile", "")
 
-        # Display insights in columns
+        # Display insights in tables
         st.markdown("### 📊 Job Insights")
-        col1, col2 = st.columns(2)
 
-        with col1:
-            st.subheader("🔧 Technical Skills")
-            st.write(", ".join(technical_skills))
+        # Create a DataFrame for Technical Skills
+        technical_skills_df = pd.DataFrame({"Technical Skills": technical_skills})
 
-        with col2:
-            st.subheader("🤝 Soft Skills")
-            st.write(", ".join(soft_skills))
+        # Create a DataFrame for Soft Skills
+        soft_skills_df = pd.DataFrame({"Soft Skills": soft_skills})
 
+        # Display the tables for Technical Skills and Soft Skills
+        st.subheader("🔧 Technical Skills")
+        st.table(technical_skills_df)
+
+        st.subheader("🤝 Soft Skills")
+        st.table(soft_skills_df)
 
         # Display Candidate Profile as text
         st.markdown("### 🏆 Ideal Candidate Profile")
@@ -182,4 +183,4 @@ if st.button("🚀 Analyze & Generate Insights"):
             value=example_questions,
             height=300,
             disabled=True
-        ) 
+        )
