@@ -31,15 +31,14 @@ st.markdown(
 )
 
 # Example Job Description, Responsibilities, and Requirements
-job_example = """
-**About the Job:**  
+job_example = """**About the Job:**  
 Do you have a passion in Data Analyst?
 Our Data Analyst Internship Programme has been crafted to simulate our Graduate Programme so that you can understand what a career in technology at London Stock Exchange Group (LSEG) would really be like.
 At LSEG, we consider on providing opportunities equally as a priority, we strive to establish teams that are diverse and encourage coordinated working and sharing of ideas!
 At LSEG Bangkok, you can be your best self. Our open and inclusive culture and collaborative communities connect colleagues from across the world, and a host of skill development programmes support our people's personal and professional growth.
 
+**What your internship will include:**
 We are looking for undergraduates student who will support our Data Analyst team in collecting, cleaning, and transforming data from different sources
-
 Perform data analysis using your weapon of choice - either Tableau or Power BI
 Perform data manipulation, analysis, and forecasting via MS Excel
 Learn how to analyse and capture insights using real world data
@@ -48,7 +47,6 @@ Work with partners across the globe
 Get to be part of world's leading fintech company
 
 **What we are looking for:**
-
 You will have an interest in technology demonstrated either via your academic studies, work experience, or extracurricular activities. For instance, you may be part of a Computing Society, have taught yourself how to code or have focused on technology as part of a university project.
 
 Basic SQL, will be a good starting point to have for this internship
@@ -56,6 +54,8 @@ Although not a requirement if you understood Python, Power BI, and Tableau skill
 A curiosity for data and an ability to analyse information to draw conclusions and propose solutions.
 Individuals who are able to connect the dots and think creatively.
 People who can collaborate with others, using their strong English communication skills in the process. (written and verbal)
+
+To be apply, you must be a penultimate year student due to complete your degree 2026. You should have a good grade and studying a technology, engineering or computing related degree. 
 """
 
 # Input 1: Job Information (description, responsibilities, requirements)
