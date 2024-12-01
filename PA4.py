@@ -68,4 +68,46 @@ You are an AI assistant that extracts technical skills, soft skills, and a summa
 Given a LinkedIn job description, provide a summary in JSON format with the following fields:
 - "Technical Skills": Key technical skills required for the role.
 - "Soft Skills": Key soft skills required for the role.
-- "Candidate
+- "Candidate Profile": A summary of the key traits or qualities the company is seeking in a candidate, such as work ethic, personality traits, or professional qualities.
+
+Example output:
+{
+    "Technical Skills": ["Python", "Machine Learning", "Data Analysis", "SQL"],
+    "Soft Skills": ["Collaboration", "Adaptability", "Communication"],
+    "Candidate Profile": "The ideal candidate is a strategic thinker, innovative, data-driven, collaborative, and results-oriented, with excellent communication skills."
+}
+"""
+
+# Input 2: Mock behavioral interview question
+mock_interview_prompt = """
+Based on the technical skills, soft skills, and candidate profile extracted from the LinkedIn job post, generate 3 example behavioral interview questions.
+Questions should help the candidate prepare for real-life scenarios based on the job requirements.
+"""
+
+# Submit button for generating insights and mock interview questions
+if st.button("🚀 Analyze & Generate Insights"):
+    if not user_api_key:
+        st.error("⚠️ Please enter your OpenAI API key in the sidebar to proceed.")
+    elif not job_post_description.strip():
+        st.error("⚠️ Please input the job description text.")
+    else:
+        try:
+            # Initialize OpenAI client
+            openai.api_key = user_api_key
+
+            # Call OpenAI API to extract insights from job post
+            messages = [
+                {"role": "system", "content": job_post_prompt},
+                {"role": "user", "content": job_post_description}
+            ]
+
+            response_insights = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=messages
+            )
+
+            # Parse insights
+            insights = json.loads(response_insights["choices"][0]["message"]["content"])
+            technical_skills = insights.get("Technical Skills", [])
+            soft_skills = insights.get("Soft Skills", [])
+            candidate_profile = insights
