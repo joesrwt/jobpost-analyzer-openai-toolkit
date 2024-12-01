@@ -83,7 +83,7 @@ Example output:
 }
 """
 
-# Input 2: Mock behavioral interview question
+# Input 2: Mock interview question
 mock_interview_prompt = """
 Based on the technical skills, soft skills, and candidate profile extracted from the LinkedIn job post, generate 3 example interview questions.
 Questions should help the candidate prepare for real-life scenarios based on the job requirements. no need to show json file of the extracted information
@@ -170,7 +170,7 @@ if st.button("🚀 Analyze & Generate Insights"):
             disabled=True  # Make it read-only
         )
 
-        # Generate behavioral interview questions based on insights
+        # Generate interview questions based on insights
         messages.append({
             "role": "system",
             "content": mock_interview_prompt,
@@ -180,11 +180,11 @@ if st.button("🚀 Analyze & Generate Insights"):
             messages=messages
         )
 
-        # Display behavioral questions in text area
+        # Display questions in text area
         example_questions = response_questions.choices[0].message.content
-        st.markdown("### 🗨️ Mock Behavioral Interview Questions")
+        st.markdown("### 🗨️ Mock Interview Questions")
         st.text_area(
-            "Example behavioral interview questions:",
+            "Example interview questions in 3 aspects:",
             value=example_questions,
             height=300,
             disabled=True
