@@ -110,4 +110,55 @@ if st.button("🚀 Analyze & Generate Insights"):
             insights = json.loads(response_insights["choices"][0]["message"]["content"])
             technical_skills = insights.get("Technical Skills", [])
             soft_skills = insights.get("Soft Skills", [])
-            candidate_profile = insights
+            candidate_profile = insights.get("Candidate Profile", "")
+
+            # Display insights in DataFrame
+            st.markdown("### 📊 Job Insights")
+            df_insights = pd.DataFrame({
+                "Technical Skills": [", ".join(technical_skills)],
+                "Soft Skills": [", ".join(soft_skills)],
+            })
+            st.table(df_insights)
+
+            # Display Candidate Profile as text
+            st.markdown("### 🏆 Ideal Candidate Profile")
+            st.text_area(
+                "Key traits of the ideal candidate:",
+                value=candidate_profile,
+                height=150,
+                disabled=True  # Make it read-only
+            )
+
+            # Generate behavioral interview questions based on insights
+            messages.append({
+                "role": "system",
+                "content": mock_interview_prompt,
+            })
+            response_questions = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=messages
+            )
+
+            # Display behavioral questions in text area
+            example_questions = response_questions["choices"][0]["message"]["content"]
+            st.markdown("### 🗨️ Mock Behavioral Interview Questions")
+            st.text_area(
+                "Example behavioral interview questions:",
+                value=example_questions,
+                height=150,
+                disabled=True  # Make it read-only
+            )
+
+        except Exception as e:
+            st.error(f"⚠️ An error occurred: {e}")
+
+# Footer
+st.markdown(
+    """
+    <hr>
+    <div style="text-align: center; color: #696969;">
+        <p>Made with ❤️ using <b>Streamlit</b> and <b>OpenAI</b>.</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
