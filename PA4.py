@@ -34,6 +34,7 @@ st.markdown(
 job_example = """**About the Job:**  
 Do you have a passion in Data Analyst?
 Our Data Analyst Internship Programme has been crafted to simulate our Graduate Programme so that you can understand what a career in technology at London Stock Exchange Group (LSEG) would really be like.
+
 At LSEG, we consider on providing opportunities equally as a priority, we strive to establish teams that are diverse and encourage coordinated working and sharing of ideas!
 At LSEG Bangkok, you can be your best self. Our open and inclusive culture and collaborative communities connect colleagues from across the world, and a host of skill development programmes support our people's personal and professional growth.
 
