@@ -1,15 +1,23 @@
 # pa4_6542118426_Sorawit
 
-## Overview
-The **LinkedIn Job Post Analyzer & Mock Interview Toolkit** is a web application built with **Streamlit** that helps job seekers extract key insights from LinkedIn job postings and prepare for interviews. The tool utilizes OpenAI's GPT-3.5 model to extract technical skills, soft skills, and company characteristics from a job description, as well as generate mock behavioral interview questions based on those insights.
-[Streamlit : LinkedIn Job Post Analyzer & Mock Interview Toolkit](https://pa4-6542118426-sorawit.streamlit.app/)
+# LinkedIn Job Post Analyzer & Mock Interview Toolkit
 
-## Features
-1. **Job Post Analyzer**:
-   - Extracts key insights from LinkedIn job postings.
-   - Identifies technical and soft skills required for the job.
-   - Summarizes the traits and qualities the company is seeking in a candidate.
-   - Displays the extracted information in a structured format.
+This web app helps you analyze LinkedIn job postings and generate mock interview questions. It extracts key technical and soft skills from job descriptions and creates interview questions based on the extracted insights.
 
-2. **Mock Interview Toolkit**:
-   - Based on the extracted job post insights, the tool generates three behavioral interview questions to help you prepare for real-life scenarios.
+## Features:
+- **Job Description Analysis**: Paste a job description to extract technical skills, soft skills, and a candidate profile summary.
+- **Mock Interview Generation**: Based on the job insights, generate 3 example interview questions to prepare candidates for real-life scenarios.
+  
+## How to Use:
+1. **Input the Job Description**: Paste the job description, responsibilities, and requirements into the provided text box.
+2. **Provide Your OpenAI API Key**: Enter your OpenAI API key to allow the app to generate insights and interview questions.
+3. **Click "Analyze & Generate Insights"**: The app will extract key skills and traits from the job description, then generate relevant mock interview questions.
+
+## Output:
+- **Technical Skills**: Key programming languages, tools, and technical expertise.
+- **Soft Skills**: Collaboration, communication, and other soft skills.
+- **Candidate Profile**: A summary of the ideal candidate's qualities.
+- **Mock Interview Questions**: Example questions based on the job description.
+
+## Requirements:
+- OpenAI API Key
