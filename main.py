@@ -131,7 +131,7 @@ if st.button("🚀 Analyze & Generate Insights"):
             {"role": "user", "content": job_post_description}
         ]
         response_insight = client.chat.completions.create(
-             model="gpt-3.5-turbo",
+             model="gpt-4o-mini",
              messages=messages)
         # Parse insights
         insights = json.loads(response_insight.choices[0].message.content)
