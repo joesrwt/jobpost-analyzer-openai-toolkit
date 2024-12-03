@@ -141,14 +141,14 @@ if st.button("🚀 Analyze & Generate Insights"):
         st.error("⚠️ Please input the job description text.")
     else:
         # Initialize OpenAI client using the provided API key
-        openai.api_key = user_api_key
+        client = openai.OpenAI(api_key=user_api_key)
 
         # Call OpenAI API to extract insights from job post
         messages = [
             {"role": "system", "content": job_post_prompt},
             {"role": "user", "content": job_post_description}
         ]
-        response_insight = openai.Completion.create(
+        response_insight = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=messages
         )
@@ -191,7 +191,7 @@ if st.button("🚀 Analyze & Generate Insights"):
             "role": "system",
             "content": mock_interview_prompt,
         })
-        response_questions = openai.Completion.create(
+        response_questions = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=messages
         )
@@ -223,7 +223,7 @@ if st.button("🚀 Analyze & Generate Missing Skills"):
             missing_skills_prompt_with_resume = missing_skills_prompt + "\nJob Post Skills: " + str(technical_skills) + "\nResume: " + resume_text
 
             # Call OpenAI API to generate missing skills
-            response = openai.Completion.create(
+            response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 prompt=missing_skills_prompt_with_resume,
                 max_tokens=500
