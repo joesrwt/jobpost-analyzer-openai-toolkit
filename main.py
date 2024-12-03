@@ -2,6 +2,7 @@ import streamlit as st
 import openai
 import json
 import pandas as pd
+import PyPDF2
 
 # Set page configuration
 st.set_page_config(
@@ -95,6 +96,23 @@ How have you demonstrated your ability to collaborate with others in a team sett
 Tell me about a time when you had to think creatively to solve a data-related challenge. How did you approach the problem, connect the dots, and propose innovative solutions?
 """
 
+# Function to extract text from PDF
+def extract_pdf_text(pdf_file):
+    try:
+        reader = PyPDF2.PdfReader(pdf_file)
+        text = ""
+        for page in reader.pages:
+            text += page.extract_text()
+        return text
+    except Exception as e:
+        return f"Error extracting PDF text: {str(e)}"
+
+# Missing Skills Analysis Prompt
+missing_skills_prompt = """
+Given the key skills extracted from the job post and the content of the resume, identify any missing skills that the resume does not mention but are required for the role.
+List any missing skills in the resume compared to the job post.
+"""
+
 # Custom CSS for button and output text colors
 st.markdown(
     """
@@ -123,18 +141,20 @@ if st.button("🚀 Analyze & Generate Insights"):
         st.error("⚠️ Please input the job description text.")
     else:
         # Initialize OpenAI client using the provided API key
-        client = openai.OpenAI(api_key=user_api_key)
+        openai.api_key = user_api_key
 
         # Call OpenAI API to extract insights from job post
         messages = [
             {"role": "system", "content": job_post_prompt},
             {"role": "user", "content": job_post_description}
         ]
-        response_insight = client.chat.completions.create(
-             model="gpt-3.5-turbo",
-             messages=messages)
+        response_insight = openai.Completion.create(
+            model="gpt-3.5-turbo",
+            messages=messages
+        )
+        
         # Parse insights
-        insights = json.loads(response_insight.choices[0].message.content)
+        insights = json.loads(response_insight.choices[0].text.strip())
         technical_skills = insights.get("Technical Skills", [])
         soft_skills = insights.get("Soft Skills", [])
         candidate_profile = insights.get("Candidate Profile", "")
@@ -171,13 +191,13 @@ if st.button("🚀 Analyze & Generate Insights"):
             "role": "system",
             "content": mock_interview_prompt,
         })
-        response_questions = client.chat.completions.create(
+        response_questions = openai.Completion.create(
             model="gpt-3.5-turbo",
             messages=messages
         )
 
         # Display questions in text area
-        example_questions = response_questions.choices[0].message.content
+        example_questions = response_questions.choices[0].text.strip()
         st.markdown("### 🗨️ Mock Interview Questions")
         st.text_area(
             "Example interview questions in 3 aspects:",
@@ -186,20 +206,34 @@ if st.button("🚀 Analyze & Generate Insights"):
             disabled=True
         )
 
-        # Missing Skills Analysis
-        missing_skills = []
-        if technical_skills:
-            # Analyze missing technical skills in the resume (assuming the resume is provided as text input)
-            resume_text = st.text_area("Paste the resume text here:", height=310)
+# Input for Resume Upload for Missing Skills Analysis
+resume_file = st.file_uploader("Upload your resume (PDF only)", type="pdf")
 
-            if resume_text.strip():
-                # Check for missing skills in resume
-                missing_skills = [skill for skill in technical_skills if skill.lower() not in resume_text.lower()]
-        
-        # Display Missing Skills if any
-        st.markdown("### 🚨 Missing Skills")
-        if missing_skills:
-            st.write("The following required technical skills are missing from your resume:")
-            st.write(", ".join(missing_skills))
+# Button to run the analysis for Missing Skills
+if st.button("🚀 Analyze & Generate Missing Skills"):
+    if not user_api_key:
+        st.error("⚠️ Please enter your OpenAI API key in the sidebar to proceed.")
+    elif not resume_file:
+        st.error("⚠️ Please upload your resume in PDF format.")
+    else:
+        # Extract text from resume
+        resume_text = extract_pdf_text(resume_file)
+        if resume_text:
+            # Prepare the missing skills prompt with job skills and resume content
+            missing_skills_prompt_with_resume = missing_skills_prompt + "\nJob Post Skills: " + str(technical_skills) + "\nResume: " + resume_text
+
+            # Call OpenAI API to generate missing skills
+            response = openai.Completion.create(
+                model="gpt-3.5-turbo",
+                prompt=missing_skills_prompt_with_resume,
+                max_tokens=500
+            )
+
+            # Parse response and display missing skills
+            missing_skills = response.choices[0].text.strip()
+
+            st.markdown("### 🚨 Missing Skills in Your Resume")
+            st.text_area("Missing skills based on the job post:", value=missing_skills, height=200, disabled=True)
+
         else:
-            st.write("No missing skills detected. Your resume covers all the required technical skills.")
+            st.error("⚠️ Resume text extraction failed. Please check the PDF format.")
