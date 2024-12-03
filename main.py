@@ -157,6 +157,26 @@ if st.button("🚀 Analyze & Generate Insights"):
         st.subheader("🤝 Soft Skills")
         st.table(soft_skills_df)
 
+        # Display checkboxes for the user to select the skills they have
+        st.markdown("### ✅ Select Skills You Have")
+
+        st.subheader("🔧 Technical Skills")
+        technical_skills_selected = []
+        for skill in technical_skills:
+            if st.checkbox(skill, key=skill):
+                technical_skills_selected.append(skill)
+
+        st.subheader("🤝 Soft Skills")
+        soft_skills_selected = []
+        for skill in soft_skills:
+            if st.checkbox(skill, key=skill):
+                soft_skills_selected.append(skill)
+
+        # Display selected skills
+        st.markdown("### 📋 Skills You Have Selected")
+        st.markdown(f"**Technical Skills:** {', '.join(technical_skills_selected) if technical_skills_selected else 'None'}")
+        st.markdown(f"**Soft Skills:** {', '.join(soft_skills_selected) if soft_skills_selected else 'None'}")
+
         # Display Candidate Profile as text
         st.markdown("### 🏆 Ideal Candidate Profile")
         st.text_area(
