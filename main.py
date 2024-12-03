@@ -123,18 +123,19 @@ if st.button("🚀 Analyze & Generate Insights"):
         st.error("⚠️ Please input the job description text.")
     else:
         # Initialize OpenAI client using the provided API key
-        client = openai.OpenAI(api_key=user_api_key)
+        openai.api_key = user_api_key
 
         # Call OpenAI API to extract insights from job post
         messages = [
             {"role": "system", "content": job_post_prompt},
             {"role": "user", "content": job_post_description}
         ]
-        response_insight = client.chat.completions.create(
-             model="gpt-4o-mini",
-             messages=messages)
+        response_insight = openai.ChatCompletion.create(
+            model="gpt-4o-mini",
+            messages=messages)
+        
         # Parse insights
-        insights = json.loads(response_insight.choices[0].message.content)
+        insights = json.loads(response_insight.choices[0].message['content'])
         technical_skills = insights.get("Technical Skills", [])
         soft_skills = insights.get("Soft Skills", [])
         candidate_profile = insights.get("Candidate Profile", "")
@@ -142,22 +143,29 @@ if st.button("🚀 Analyze & Generate Insights"):
         # Display insights in tables
         st.markdown("### 📊 Job Insights")
 
-        # Create a DataFrame for Technical Skills
-        technical_skills_df = pd.DataFrame({"Technical Skills": technical_skills})
+        # Create a DataFrame for Technical Skills with checkboxes (preserving state)
+        technical_skills_data = {
+            "Technical Skills": technical_skills,
+            "You Have This Skill?": [st.session_state.get(f"tech_{skill}", False) for skill in technical_skills]
+        }
+        technical_skills_df = pd.DataFrame(technical_skills_data)
         technical_skills_df.index += 1  # Set index starting from 1
         
-        # Create a DataFrame for Soft Skills with index starting from 1
-        soft_skills_df = pd.DataFrame({"Soft Skills": soft_skills})
+        # Create a DataFrame for Soft Skills with checkboxes (preserving state)
+        soft_skills_data = {
+            "Soft Skills": soft_skills,
+            "You Have This Skill?": [st.session_state.get(f"soft_{skill}", False) for skill in soft_skills]
+        }
+        soft_skills_df = pd.DataFrame(soft_skills_data)
         soft_skills_df.index += 1  # Set index starting from 1
-        
-        # Add a new column for "Skills You Have" with checkboxes for each skill
-        skills_you_have = []
-        for skill in technical_skills:
-            has_skill = st.checkbox(f"Do you have {skill}?", key=skill)
-            skills_you_have.append(has_skill)
-        
-        technical_skills_df['Skills You Have'] = skills_you_have
 
+        # Checkboxes to update session_state when clicked
+        for skill in technical_skills:
+            st.session_state[f"tech_{skill}"] = st.checkbox(skill, value=st.session_state.get(f"tech_{skill}", False))
+
+        for skill in soft_skills:
+            st.session_state[f"soft_{skill}"] = st.checkbox(skill, value=st.session_state.get(f"soft_{skill}", False))
+        
         # Display the tables for Technical Skills and Soft Skills
         st.subheader("🔧 Technical Skills")
         st.table(technical_skills_df)
@@ -179,7 +187,7 @@ if st.button("🚀 Analyze & Generate Insights"):
             "role": "system",
             "content": mock_interview_prompt,
         })
-        response_questions = client.chat.completions.create(
+        response_questions = openai.ChatCompletion.create(
             model="gpt-4o-mini",
             messages=messages
         )
