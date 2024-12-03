@@ -2,6 +2,7 @@ import streamlit as st
 import openai
 import json
 import pandas as pd
+import PyPDF2
 
 # Set page configuration
 st.set_page_config(
@@ -23,7 +24,7 @@ st.markdown(
     <div style="text-align: center;">
         <h1 style="color: black;">📄 LinkedIn Job Post: Analyzer & Mock Interview Toolkit</h1>
         <p style="font-size: 18px; color: black;">
-            Extract key technical and soft skills from detailed job post and mock interview questions!
+            Extract key technical and soft skills from detailed job posts, mock interview questions, and compare skills with your resume!
         </p>
     </div>
     """,
@@ -55,13 +56,15 @@ Web based dashboard and visualization
 
 # Input 1: Job Information (description, responsibilities, requirements)
 st.markdown("### 📝 Input Job Information (Job Description / Responsibilities / Requirements)")
-
-# Display the example inside the text area as the default content (large input box)
 job_post_description = st.text_area(
     "Paste the job description, responsibilities, and requirements here:",
     value=job_example,
-    height=310  
+    height=310
 )
+
+# Upload Resume PDF Section
+st.markdown("### 📤 Upload Your Resume (PDF Only)")
+uploaded_file = st.file_uploader("Upload your resume to compare skills", type=["pdf"])
 
 # Prompt to analyze LinkedIn job post
 job_post_prompt = """
@@ -79,10 +82,10 @@ Example output:
 }
 """
 
-# Input 2: Mock interview question
+# Mock interview question generation
 mock_interview_prompt = """
 Based on the technical skills, soft skills, and candidate profile extracted from the LinkedIn job post, generate 3 example interview questions.
-Questions should help the candidate prepare for real-life scenarios based on the job requirements. no need to show json file of the extracted information
+Questions should help the candidate prepare for real-life scenarios based on the job requirements. No need to show json file of the extracted information.
 
 Example output:
 1. Technical Skills Question: 
@@ -106,12 +109,6 @@ st.markdown(
         .stTextArea textarea {
             color: black;  /* Black text for output */
         }
-        .stMarkdown {
-            color: black;  /* Black text for output */
-        }
-        .stMarkdown h2, .stMarkdown h3 {
-            color: black;  /* Black color for titles */
-        }
     </style>
     """, unsafe_allow_html=True)
 
@@ -123,65 +120,62 @@ if st.button("🚀 Analyze & Generate Insights"):
         st.error("⚠️ Please input the job description text.")
     else:
         # Initialize OpenAI client using the provided API key
-        client = openai.OpenAI(api_key=user_api_key)
+        openai.api_key = user_api_key
 
         # Call OpenAI API to extract insights from job post
         messages = [
             {"role": "system", "content": job_post_prompt},
             {"role": "user", "content": job_post_description}
         ]
-        response_insight = client.chat.completions.create(
+        response_insight = openai.ChatCompletion.create(
              model="gpt-3.5-turbo",
-             messages=messages)
+             messages=messages
+        )
+
         # Parse insights
-        insights = json.loads(response_insight.choices[0].message.content)
+        insights = json.loads(response_insight.choices[0].message["content"])
         technical_skills = insights.get("Technical Skills", [])
         soft_skills = insights.get("Soft Skills", [])
         candidate_profile = insights.get("Candidate Profile", "")
 
         # Display insights in tables
         st.markdown("### 📊 Job Insights")
-
-        # Create a DataFrame for Technical Skills
-        technical_skills_df = pd.DataFrame({"Technical Skills": technical_skills})
-        technical_skills_df.index += 1  # Set index starting from 1
-        
-        # Create a DataFrame for Soft Skills with index starting from 1
-        soft_skills_df = pd.DataFrame({"Soft Skills": soft_skills})
-        soft_skills_df.index += 1  # Set index starting from 1
-        
-        # Display the tables for Technical Skills and Soft Skills
         st.subheader("🔧 Technical Skills")
-        st.table(technical_skills_df)
-
+        st.table(pd.DataFrame({"Technical Skills": technical_skills}))
         st.subheader("🤝 Soft Skills")
-        st.table(soft_skills_df)
-
-        # Display Candidate Profile as text
+        st.table(pd.DataFrame({"Soft Skills": soft_skills}))
         st.markdown("### 🏆 Ideal Candidate Profile")
-        st.text_area(
-            "Key traits of the ideal candidate:",
-            value=candidate_profile,
-            height=150,
-            disabled=True  # Make it read-only
-        )
+        st.text_area("Key traits of the ideal candidate:", value=candidate_profile, height=150, disabled=True)
 
-        # Generate interview questions based on insights
-        messages.append({
-            "role": "system",
-            "content": mock_interview_prompt,
-        })
-        response_questions = client.chat.completions.create(
+        # Generate mock interview questions
+        messages.append({"role": "system", "content": mock_interview_prompt})
+        response_questions = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=messages
         )
+        example_questions = response_questions.choices[0].message["content"]
 
-        # Display questions in text area
-        example_questions = response_questions.choices[0].message.content
+        # Display questions
         st.markdown("### 🗨️ Mock Interview Questions")
-        st.text_area(
-            "Example interview questions in 3 aspects:",
-            value=example_questions,
-            height=300,
-            disabled=True
-        )
+        st.text_area("Example interview questions in 3 aspects:", value=example_questions, height=300, disabled=True)
+
+        # Resume skill matching
+        if uploaded_file:
+            try:
+                # Extract text from the uploaded resume PDF
+                pdf_reader = PyPDF2.PdfReader(uploaded_file)
+                resume_text = " ".join(page.extract_text() for page in pdf_reader.pages)
+
+                # Match technical skills
+                matched_skills = [skill for skill in technical_skills if skill.lower() in resume_text.lower()]
+                missing_skills = [skill for skill in technical_skills if skill.lower() not in resume_text.lower()]
+
+                # Display resume skill matching results
+                st.markdown("### 📋 Resume Skill Match")
+                st.write("#### ✅ Matched Skills")
+                st.table(pd.DataFrame({"Matched Skills": matched_skills}))
+                st.write("#### ❌ Missing Skills")
+                st.table(pd.DataFrame({"Missing Skills": missing_skills}))
+
+            except Exception as e:
+                st.error(f"Error reading resume: {e}")
