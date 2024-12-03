@@ -135,7 +135,7 @@ if st.button("🚀 Analyze & Generate Insights"):
             messages=messages)
         
         # Parse insights
-        insights = json.loads(response_insight.choices[0].message['content'])
+        insights = json.loads(response_insight.choices[0].message.content)
         technical_skills = insights.get("Technical Skills", [])
         soft_skills = insights.get("Soft Skills", [])
         candidate_profile = insights.get("Candidate Profile", "")
