@@ -140,28 +140,13 @@ if st.button("🚀 Analyze & Generate Insights"):
         # Display insights in tables
         st.markdown("### 📊 Job Insights")
 
-        # Create a DataFrame for Technical Skills with checkboxes (preserving state)
-        technical_skills_data = {
-            "Technical Skills": technical_skills,
-            "You Have This Skill?": [st.session_state.get(f"tech_{skill}", False) for skill in technical_skills]
-        }
-        technical_skills_df = pd.DataFrame(technical_skills_data)
+        # Create a DataFrame for Technical Skills
+        technical_skills_df = pd.DataFrame({"Technical Skills": technical_skills})
         technical_skills_df.index += 1  # Set index starting from 1
         
-        # Create a DataFrame for Soft Skills with checkboxes (preserving state)
-        soft_skills_data = {
-            "Soft Skills": soft_skills,
-            "You Have This Skill?": [st.session_state.get(f"soft_{skill}", False) for skill in soft_skills]
-        }
-        soft_skills_df = pd.DataFrame(soft_skills_data)
+        # Create a DataFrame for Soft Skills with index starting from 1
+        soft_skills_df = pd.DataFrame({"Soft Skills": soft_skills})
         soft_skills_df.index += 1  # Set index starting from 1
-
-        # Checkboxes to update session_state when clicked
-        for skill in technical_skills:
-            st.session_state[f"tech_{skill}"] = st.checkbox(skill, value=st.session_state.get(f"tech_{skill}", False))
-
-        for skill in soft_skills:
-            st.session_state[f"soft_{skill}"] = st.checkbox(skill, value=st.session_state.get(f"soft_{skill}", False))
         
         # Display the tables for Technical Skills and Soft Skills
         st.subheader("🔧 Technical Skills")
