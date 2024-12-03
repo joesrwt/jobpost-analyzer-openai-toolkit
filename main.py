@@ -178,7 +178,7 @@ if st.button("🚀 Analyze & Generate Insights"):
             "content": mock_interview_prompt,
         })
         response_questions = client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o-mini",
             messages=messages
         )
 
