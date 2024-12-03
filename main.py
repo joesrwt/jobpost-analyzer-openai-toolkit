@@ -2,12 +2,6 @@ import streamlit as st
 import openai
 import json
 import pandas as pd
-import PyPDF2
-
-import streamlit as st
-import openai
-import json
-import pandas as pd
 
 # Set page configuration
 st.set_page_config(
@@ -191,53 +185,3 @@ if st.button("🚀 Analyze & Generate Insights"):
             height=300,
             disabled=True
         )
-
-
-# Function to extract text from PDF
-def extract_pdf_text(pdf_file):
-    try:
-        reader = PyPDF2.PdfReader(pdf_file)
-        text = ""
-        for page in reader.pages:
-            text += page.extract_text()
-        return text
-    except Exception as e:
-        return f"Error extracting PDF text: {str(e)}"
-
-# Missing Skills Analysis Prompt
-missing_skills_prompt = """
-Given the key skills extracted from the job post and the content of the resume, identify any missing skills that the resume does not mention but are required for the role.
-List any missing skills in the resume compared to the job post.
-"""
-
-# Input for Resume Upload for Missing Skills Analysis
-resume_file = st.file_uploader("Upload your resume (PDF only)", type="pdf")
-
-# Button to run the analysis for Missing Skills
-if st.button("🚀 Analyze & Generate Missing Skills"):
-    if not user_api_key:
-        st.error("⚠️ Please enter your OpenAI API key in the sidebar to proceed.")
-    elif not resume_file:
-        st.error("⚠️ Please upload your resume in PDF format.")
-    else:
-        # Extract text from resume
-        resume_text = extract_pdf_text(resume_file)
-        if resume_text:
-            # Prepare the missing skills prompt with job skills and resume content
-            missing_skills_prompt_with_resume = missing_skills_prompt + "\nJob Post Skills: " + str(technical_skills) + "\nResume: " + resume_text
-
-            # Call OpenAI API to generate missing skills
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                prompt=missing_skills_prompt_with_resume,
-                max_tokens=100
-            )
-
-            # Parse response and display missing skills
-            missing_skills = response.choices[0].text.strip()
-
-            st.markdown("### 🚨 Missing Skills in Your Resume")
-            st.text_area("Missing skills based on the job post:", value=missing_skills, height=200, disabled=True)
-
-        else:
-            st.error("⚠️ Resume text extraction failed. Please check the PDF format.")
