@@ -21,9 +21,9 @@ st.sidebar.markdown("Enter your OpenAI API key to analyze LinkedIn job postings.
 st.markdown(
     """
     <div style="text-align: center;">
-        <h1 style="color: black;">📄 LinkedIn Job Post: Analyzer & Mock Interview Toolkit</h1>
-        <p style="font-size: 18px; color: black;">
-            Extract key technical and soft skills from detailed job post and mock interview questions!
+        <h1 style="color: #4A90E2; font-family: 'Arial', sans-serif;">📄 LinkedIn Job Post: Analyzer & Mock Interview Toolkit</h1>
+        <p style="font-size: 20px; color: #2C3E50; font-family: 'Arial', sans-serif;">
+            Extract key technical and soft skills from detailed job posts and generate mock interview questions to prepare for your next interview!
         </p>
     </div>
     """,
@@ -54,14 +54,77 @@ Web based dashboard and visualization
 """
 
 # Input 1: Job Information (description, responsibilities, requirements)
-st.markdown("### 📝 Input Job Information (Job Description / Responsibilities / Requirements)")
+st.markdown(
+    """
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h3 style="color: #16A085; font-family: 'Arial', sans-serif;">📝 Input Job Information (Job Description / Responsibilities / Requirements)</h3>
+        <p style="color: #2C3E50; font-size: 16px; font-family: 'Arial', sans-serif;">Paste the job description, responsibilities, and requirements here:</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
 
 # Display the example inside the text area as the default content (large input box)
 job_post_description = st.text_area(
-    "Paste the job description, responsibilities, and requirements here:",
+    label="Paste the job description, responsibilities, and requirements here:",
     value=job_example,
-    height=310  
+    height=310,
+    max_chars=3000,
+    help="Paste the entire job description here for better analysis.",
+    key="job_description_area",
+    placeholder="Paste the job description here...",
 )
+
+# Custom CSS for styling
+st.markdown(
+    """
+    <style>
+        /* Set background color */
+        body {
+            background-color: #F5F5F5;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header style */
+        h1 {
+            font-family: 'Arial', sans-serif;
+            color: #4A90E2;
+        }
+
+        /* Sidebar style */
+        .sidebar .sidebar-content {
+            background-color: #ECF0F1;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        /* Button style */
+        .stButton button {
+            background-color: #16A085;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .stButton button:hover {
+            background-color: #1ABC9C;
+        }
+
+        /* Table style */
+        .stTable {
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        .stTextArea textarea {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .stTextArea textarea, .stMarkdown p, .stMarkdown h3 {
+            color: #2C3E50;
+        }
+    </style>
+    """, unsafe_allow_html=True)
 
 # Prompt to analyze LinkedIn job post
 job_post_prompt = """
@@ -94,26 +157,6 @@ How have you demonstrated your ability to collaborate with others in a team sett
 3. Candidate Profile Question:
 Tell me about a time when you had to think creatively to solve a data-related challenge. How did you approach the problem, connect the dots, and propose innovative solutions?
 """
-
-# Custom CSS for button and output text colors
-st.markdown(
-    """
-    <style>
-        .stButton button {
-            background-color: #90EE90;  /* Light Green */
-            color: black;
-        }
-        .stTextArea textarea {
-            color: black;  /* Black text for output */
-        }
-        .stMarkdown {
-            color: black;  /* Black text for output */
-        }
-        .stMarkdown h2, .stMarkdown h3 {
-            color: black;  /* Black color for titles */
-        }
-    </style>
-    """, unsafe_allow_html=True)
 
 # Submit button for generating insights and mock interview questions
 if st.button("🚀 Analyze & Generate Insights"):
@@ -180,8 +223,4 @@ if st.button("🚀 Analyze & Generate Insights"):
         example_questions = response_questions.choices[0].message.content
         st.markdown("### 🗨️ Mock Interview Questions")
         st.text_area(
-            "Example interview questions in 3 aspects:",
-            value=example_questions,
-            height=300,
-            disabled=True
-        )
+            "Example interview questions in
