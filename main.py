@@ -123,14 +123,14 @@ if st.button("🚀 Analyze & Generate Insights"):
         st.error("⚠️ Please input the job description text.")
     else:
         # Initialize OpenAI client using the provided API key
-        openai.api_key = user_api_key
+        client = openai.OpenAI(api_key=user_api_key)
 
         # Call OpenAI API to extract insights from job post
         messages = [
             {"role": "system", "content": job_post_prompt},
             {"role": "user", "content": job_post_description}
         ]
-        response_insight = openai.ChatCompletion.create(
+        response_insight = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages)
         
@@ -187,7 +187,7 @@ if st.button("🚀 Analyze & Generate Insights"):
             "role": "system",
             "content": mock_interview_prompt,
         })
-        response_questions = openai.ChatCompletion.create(
+        response_questions = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages
         )
