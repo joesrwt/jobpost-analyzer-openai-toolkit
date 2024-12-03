@@ -223,4 +223,8 @@ if st.button("🚀 Analyze & Generate Insights"):
         example_questions = response_questions.choices[0].message.content
         st.markdown("### 🗨️ Mock Interview Questions")
         st.text_area(
-            "Example interview questions in
+            "Example interview questions in the context of the job description:",
+            value=example_questions,
+            height=250,
+            disabled=True
+        )
