@@ -142,13 +142,19 @@ if st.button("🚀 Analyze & Generate Insights"):
         # Display insights in tables
         st.markdown("### 📊 Job Insights")
 
-        # Create a DataFrame for Technical Skills
+        # Create a DataFrame for Technical Skills with checkboxes
         technical_skills_df = pd.DataFrame({"Technical Skills": technical_skills})
         technical_skills_df.index += 1  # Set index starting from 1
         
-        # Create a DataFrame for Soft Skills with index starting from 1
+        # Add a column with checkboxes
+        technical_skills_df["Skill Acquired"] = [st.checkbox(f"✔ {skill}", key=f"tech_{i}") for i, skill in enumerate(technical_skills)]
+
+        # Create a DataFrame for Soft Skills with checkboxes
         soft_skills_df = pd.DataFrame({"Soft Skills": soft_skills})
         soft_skills_df.index += 1  # Set index starting from 1
+        
+        # Add a column with checkboxes
+        soft_skills_df["Skill Acquired"] = [st.checkbox(f"✔ {skill}", key=f"soft_{i}") for i, skill in enumerate(soft_skills)]
         
         # Display the tables for Technical Skills and Soft Skills
         st.subheader("🔧 Technical Skills")
@@ -156,26 +162,6 @@ if st.button("🚀 Analyze & Generate Insights"):
 
         st.subheader("🤝 Soft Skills")
         st.table(soft_skills_df)
-
-        # Display checkboxes for the user to select the skills they have
-        st.markdown("### ✅ Select Skills You Have")
-
-        st.subheader("🔧 Technical Skills")
-        technical_skills_selected = []
-        for skill in technical_skills:
-            if st.checkbox(skill, key=skill):
-                technical_skills_selected.append(skill)
-
-        st.subheader("🤝 Soft Skills")
-        soft_skills_selected = []
-        for skill in soft_skills:
-            if st.checkbox(skill, key=skill):
-                soft_skills_selected.append(skill)
-
-        # Display selected skills
-        st.markdown("### 📋 Skills You Have Selected")
-        st.markdown(f"**Technical Skills:** {', '.join(technical_skills_selected) if technical_skills_selected else 'None'}")
-        st.markdown(f"**Soft Skills:** {', '.join(soft_skills_selected) if soft_skills_selected else 'None'}")
 
         # Display Candidate Profile as text
         st.markdown("### 🏆 Ideal Candidate Profile")
