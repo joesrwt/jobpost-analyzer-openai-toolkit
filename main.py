@@ -4,6 +4,11 @@ import json
 import pandas as pd
 import PyPDF2
 
+import streamlit as st
+import openai
+import json
+import pandas as pd
+
 # Set page configuration
 st.set_page_config(
     page_title="LinkedIn Job Post Analyzer & Mock Interview Toolkit",
@@ -96,23 +101,6 @@ How have you demonstrated your ability to collaborate with others in a team sett
 Tell me about a time when you had to think creatively to solve a data-related challenge. How did you approach the problem, connect the dots, and propose innovative solutions?
 """
 
-# Function to extract text from PDF
-def extract_pdf_text(pdf_file):
-    try:
-        reader = PyPDF2.PdfReader(pdf_file)
-        text = ""
-        for page in reader.pages:
-            text += page.extract_text()
-        return text
-    except Exception as e:
-        return f"Error extracting PDF text: {str(e)}"
-
-# Missing Skills Analysis Prompt
-missing_skills_prompt = """
-Given the key skills extracted from the job post and the content of the resume, identify any missing skills that the resume does not mention but are required for the role.
-List any missing skills in the resume compared to the job post.
-"""
-
 # Custom CSS for button and output text colors
 st.markdown(
     """
@@ -149,12 +137,10 @@ if st.button("🚀 Analyze & Generate Insights"):
             {"role": "user", "content": job_post_description}
         ]
         response_insight = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=messages
-        )
-        
+             model="gpt-3.5-turbo",
+             messages=messages)
         # Parse insights
-        insights = json.loads(response_insight.choices[0].text.strip())
+        insights = json.loads(response_insight.choices[0].message.content)
         technical_skills = insights.get("Technical Skills", [])
         soft_skills = insights.get("Soft Skills", [])
         candidate_profile = insights.get("Candidate Profile", "")
@@ -197,7 +183,7 @@ if st.button("🚀 Analyze & Generate Insights"):
         )
 
         # Display questions in text area
-        example_questions = response_questions.choices[0].text.strip()
+        example_questions = response_questions.choices[0].message.content
         st.markdown("### 🗨️ Mock Interview Questions")
         st.text_area(
             "Example interview questions in 3 aspects:",
@@ -205,6 +191,24 @@ if st.button("🚀 Analyze & Generate Insights"):
             height=300,
             disabled=True
         )
+
+
+# Function to extract text from PDF
+def extract_pdf_text(pdf_file):
+    try:
+        reader = PyPDF2.PdfReader(pdf_file)
+        text = ""
+        for page in reader.pages:
+            text += page.extract_text()
+        return text
+    except Exception as e:
+        return f"Error extracting PDF text: {str(e)}"
+
+# Missing Skills Analysis Prompt
+missing_skills_prompt = """
+Given the key skills extracted from the job post and the content of the resume, identify any missing skills that the resume does not mention but are required for the role.
+List any missing skills in the resume compared to the job post.
+"""
 
 # Input for Resume Upload for Missing Skills Analysis
 resume_file = st.file_uploader("Upload your resume (PDF only)", type="pdf")
@@ -226,7 +230,7 @@ if st.button("🚀 Analyze & Generate Missing Skills"):
             response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 prompt=missing_skills_prompt_with_resume,
-                max_tokens=500
+                max_tokens=100
             )
 
             # Parse response and display missing skills
