@@ -142,20 +142,22 @@ if st.button("🚀 Analyze & Generate Insights"):
         # Display insights in tables
         st.markdown("### 📊 Job Insights")
 
-        # Create a DataFrame for Technical Skills with checkboxes
+        # Create a DataFrame for Technical Skills
         technical_skills_df = pd.DataFrame({"Technical Skills": technical_skills})
         technical_skills_df.index += 1  # Set index starting from 1
         
-        # Add a column with checkboxes
-        technical_skills_df["Skill Acquired"] = [st.checkbox(f"✔ {skill}", key=f"tech_{i}") for i, skill in enumerate(technical_skills)]
-
-        # Create a DataFrame for Soft Skills with checkboxes
+        # Create a DataFrame for Soft Skills with index starting from 1
         soft_skills_df = pd.DataFrame({"Soft Skills": soft_skills})
         soft_skills_df.index += 1  # Set index starting from 1
         
-        # Add a column with checkboxes
-        soft_skills_df["Skill Acquired"] = [st.checkbox(f"✔ {skill}", key=f"soft_{i}") for i, skill in enumerate(soft_skills)]
+        # Add a new column for "Skills You Have" with checkboxes for each skill
+        skills_you_have = []
+        for skill in technical_skills:
+            has_skill = st.checkbox(f"Do you have {skill}?", key=skill)
+            skills_you_have.append(has_skill)
         
+        technical_skills_df['Skills You Have'] = skills_you_have
+
         # Display the tables for Technical Skills and Soft Skills
         st.subheader("🔧 Technical Skills")
         st.table(technical_skills_df)
