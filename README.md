@@ -39,8 +39,7 @@ Additional Information
 - Employee benefits such as healthcare insurance, annual health checkups, and retirement funds.
 - Opportunities for professional growth through learning platforms and career development.
 - Experience working in diverse and international environments.
-'''
-
+```
 
 Powered by OpenAI’s GPT-4o-mini, this toolkit transforms **lengthy, complex job descriptions** 
 > into clear, actionable insights and practical interview prep.
