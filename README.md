@@ -1,7 +1,8 @@
 # LinkedIn Job Post Analyzer & Mock Interview Toolkit with Streamlit and OpenAI
 
 This web app helps you analyze LinkedIn job postings and generate mock interview questions. It extracts **key technical skills**, **soft skills**, and an **ideal candidate profile** from any LinkedIn job posting. It then generates **mock interview questions** tailored to those insights to help you prepare confidently.
- [LinkedIn Job Post Analyzer & Mock Interview Toolkit](https://pa4-6542118426-sorawit.streamlit.app/)
+ 
+ [Streamlit : LinkedIn Job Post Analyzer & Mock Interview Toolkit](https://pa4-6542118426-sorawit.streamlit.app/)
 
 Powered by OpenAI’s GPT-4o-mini, this toolkit transforms lengthy, complex job descriptions into clear, actionable insights and practical interview prep.
 
