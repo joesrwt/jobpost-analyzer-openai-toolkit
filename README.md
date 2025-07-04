@@ -7,7 +7,7 @@ This web app helps you analyze LinkedIn job postings and generate mock interview
 Powered by OpenAI’s GPT-4o-mini, this toolkit transforms lengthy, complex job descriptions into clear, actionable insights and practical interview prep.
 
 ---
-![Sample](https://raw.githubusercontent.com/joesrwt/streamlit-openai/main/jobdesc_analyzer.gif) 
+![Sample](https://raw.githubusercontent.com/joesrwt/streamlit-openai/main/jobdesc_analyzer_sample.gif) 
 
 ## Features
 
