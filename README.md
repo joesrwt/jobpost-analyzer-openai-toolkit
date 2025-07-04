@@ -4,31 +4,6 @@ This web app helps you analyze LinkedIn job postings and generate mock interview
  
  [Streamlit : LinkedIn Job Post Analyzer & Mock Interview Toolkit](https://pa4-6542118426-sorawit.streamlit.app/)
 
-Powered by OpenAI’s GPT-4o-mini, this toolkit transforms **lengthy, complex job descriptions** 
-> into clear, actionable insights and practical interview prep.
-
----
-![Sample](https://raw.githubusercontent.com/joesrwt/streamlit-openai/main/jobdesc_analyzer_sample.gif) 
-
-## Features
-
-- 🔍 **Analyze job descriptions** for essential technical and soft skills  
-- 🧑‍💼 Summarize the ideal candidate’s traits in a concise profile  
-- 🎯 Generate 3 targeted **mock interview questions** based on job post insights  
-- 🔐 Secure API key input to use your own OpenAI credentials  
-- 💻 Clean, easy-to-use UI designed with Streamlit
-
----
-
-## How It Works
-
-1. **Paste** the full LinkedIn job description, including responsibilities and requirements.  
-2. **Analyze & Generate** insights by clicking the button.  
-3. **Review** the extracted technical and soft skills in easy-to-read tables.  
-4. **Read** the summarized ideal candidate profile.  
-5. **Practice** with generated mock interview questions tailored to the job role.
-
----
 
 ## Example on Real Job Description Input (How Long to Read and Understand This??)
 
@@ -65,3 +40,30 @@ Additional Information
 - Opportunities for professional growth through learning platforms and career development.
 - Experience working in diverse and international environments.
 """
+
+
+Powered by OpenAI’s GPT-4o-mini, this toolkit transforms **lengthy, complex job descriptions** 
+> into clear, actionable insights and practical interview prep.
+
+---
+![Sample](https://raw.githubusercontent.com/joesrwt/streamlit-openai/main/jobdesc_analyzer_sample.gif) 
+
+## Features
+
+- 🔍 **Analyze job descriptions** for essential technical and soft skills  
+- 🧑‍💼 Summarize the ideal candidate’s traits in a concise profile  
+- 🎯 Generate 3 targeted **mock interview questions** based on job post insights  
+- 🔐 Secure API key input to use your own OpenAI credentials  
+- 💻 Clean, easy-to-use UI designed with Streamlit
+
+---
+
+## How It Works
+
+1. **Paste** the full LinkedIn job description, including responsibilities and requirements.  
+2. **Analyze & Generate** insights by clicking the button.  
+3. **Review** the extracted technical and soft skills in easy-to-read tables.  
+4. **Read** the summarized ideal candidate profile.  
+5. **Practice** with generated mock interview questions tailored to the job role.
+
+---
