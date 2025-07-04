@@ -30,7 +30,7 @@ Powered by OpenAI’s GPT-4o-mini, this toolkit transforms **lengthy, complex jo
 
 ---
 
-## Example Job Description Input
+## Example Job Description Input (How Long to Read and Understand This??)
 
 ```plaintext
 About The Job
@@ -53,4 +53,5 @@ Data engineering skills including API, Airflow, Spark, Docker and Kubernetes.
 Proficiency with Linux OS and terminal command line is a plus.
 Version control such as Git or SVN.
 Web based dashboard and visualization
+
 """
