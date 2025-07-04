@@ -30,28 +30,38 @@ Powered by OpenAI’s GPT-4o-mini, this toolkit transforms **lengthy, complex jo
 
 ---
 
-## Example Job Description Input (How Long to Read and Understand This??)
+## Example on Real Job Description Input (How Long to Read and Understand This??)
 
 ```plaintext
-About The Job
-Work closely with R&D engineering teams to build data analytics workflows and processes, develop statistics / physics / ML models that bring insights into valueadded analytics. Develop GenAI models that transform complex data sets into clear, actionable insights.#internship
+How You’ll Make An Impact
+- Collect, organize, and analyze quality data from multiple sources using statistical tools and software to interpret data and generate reports.
+- Identify trends, deviations, and potential quality issues through data analysis.
+- Conduct root cause investigations using problem-solving techniques such as 5 Whys, fishbone diagrams, or Failure Mode and Effects Analysis (FMEA).
+- Develop and implement corrective and preventive actions to resolve identified issues.
+- Collaborate with cross-functional teams to drive continuous improvement initiatives.
+- Monitor the effectiveness of solutions and adjust as necessary.
+- Ensure compliance with quality standards and regulatory requirements.
+- Prepare detailed reports on quality metrics, analysis findings, and improvement activities.
+- Maintain accurate records of investigations, actions taken, and outcomes achieved.
+- Communicate findings and recommendations to management and stakeholders.
+- Review and refine quality control processes to enhance efficiency and effectiveness.
+- Assist in the development and implementation of quality policies and procedures.
+- Demonstrate commitment to core organizational values such as safety, integrity, and responsibility.
+- Ensure adherence to internal and external regulations, procedures, and guidelines.
 
-About You
-Master degree or PhD degree graduate student in Computer Science Engineering, Electrical Engineering, Mechanical Engineering, Physics fields.
-Passionate about data and analytics with AI/ML capabilities.
-Ability to work independently with proven problem-solving skills and out-of-box thinking mindset.
-Good communication and teamwork skills needed in collaborative cross functional team environment.
-Design, develop and deliver data science solutions
+Your Background
+- Bachelor’s degree in data science, engineering, or a related technical field.
+- Proven experience in a quality engineering or similar data analysis role.
+- Proficiency in advanced data analysis techniques and statistical software (e.g., Minitab, Excel).
+- Knowledge of quality management systems and methodologies (e.g., Six Sigma, Lean).
+- Excellent problem-solving skills and attention to detail.
+- Relevant certification in quality methodologies and data analysis is a plus.
+- Strong communication skills and ability to work collaboratively in cross-functional teams.
 
-Your Experience Includes
-Develop python rule-based and ML/DL model on time series data, image data, and parametric data.
-PyTorch or Tensorflow framework.
-Statistics models & ML algorithms such as multi-class classifications, decision trees and deep learning. Image AI, computer vision, OpenCV and TensorFlow.
-
-You Might Also Have
-Data engineering skills including API, Airflow, Spark, Docker and Kubernetes.
-Proficiency with Linux OS and terminal command line is a plus.
-Version control such as Git or SVN.
-Web based dashboard and visualization
-
+Additional Information
+- Competitive compensation package including fixed and performance-based bonuses.
+- Paid annual leave and flexible working policies.
+- Employee benefits such as healthcare insurance, annual health checkups, and retirement funds.
+- Opportunities for professional growth through learning platforms and career development.
+- Experience working in diverse and international environments.
 """
