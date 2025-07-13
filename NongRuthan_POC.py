@@ -10,7 +10,7 @@ st.set_page_config(
 
 # --- LOGO ---
 st.image("https://raw.githubusercontent.com/joesrwt/streamlit-openai/main/Image%2014-7-2568%20BE%20at%2000.10.jpeg", 
-         caption="👦🏻 น้องรู้ทัน", use_column_width=True)
+         caption="👦🏻 น้องรู้ทัน", width=500)
 
 # --- HEADER ---
 st.title("น้องรู้ทัน - แชทบอทเตือนภัยมิจฉาชีพ")
