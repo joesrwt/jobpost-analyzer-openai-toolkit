@@ -2,7 +2,15 @@ import streamlit as st
 from datetime import datetime
 
 # --- PAGE CONFIG ---
-st.set_page_config(page_title="Conversational AI for Scam Detection and Digital Awareness in Thailand", page_icon="👦🏻", layout="centered")
+st.set_page_config(
+    page_title="Conversational AI for Scam Detection and Digital Awareness in Thailand",
+    page_icon="👦🏻",
+    layout="centered"
+)
+
+# --- LOGO ---
+st.image("https://raw.githubusercontent.com/joesrwt/streamlit-openai/main/Image%2014-7-2568%20BE%20at%2000.10.jpeg", 
+         caption="👦🏻 น้องรู้ทัน", use_column_width=True)
 
 # --- HEADER ---
 st.title("น้องรู้ทัน - แชทบอทเตือนภัยมิจฉาชีพ")
